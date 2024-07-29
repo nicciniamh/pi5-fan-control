@@ -27,7 +27,7 @@ cd pi5-fan-control
 ```
 
 # Inspiration and Credit where Due
-I wrote this inspired by [James Ashley's Pi 5 Fan Control](https://gist.github.com/James-Ansley/32f72729487c8f287a801abcc7a54f38)
+I wrote this inspired by [James Ashley's Pi 5 Fan Controller](https://gist.github.com/James-Ansley/32f72729487c8f287a801abcc7a54f38)
 
 # Why I wrote a new version
 I wanted to integrate systemd and create a service to keep my pi cool. As I thought about it further, 
