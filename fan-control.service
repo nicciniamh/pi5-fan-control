@@ -7,7 +7,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=root
-ExecStart=/path/to/script/fancontrol
+ExecStart=/path/to/script/fan-control
 
 [Install]
 WantedBy=multi-user.target

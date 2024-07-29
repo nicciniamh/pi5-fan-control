@@ -15,7 +15,7 @@ This has been tested on Raspberry Pi 5 Model B, running Linux Kernel 6.8.0 and P
 The fan-control scipt must be on the same path referenced in fan-control.service. Please edit fan-control.service to ensure the path points to where you have installed the script. 
 
 You must change the line: 
-`ExecStart=/path/to/script/fancontrol` to reflect where the fan-control script is located, e.g,: `/home/joe/pi5-fan-control/fan-control`
+`ExecStart=/path/to/script/fan-control` to reflect where the fan-control script is located, e.g,: `/home/joe/pi5-fan-control/fan-control`
 
 ### Install the service file.
 You must have administrative (sudo) rights on your system. Installing and enabling the service takes three easy steps: 
