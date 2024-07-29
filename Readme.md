@@ -8,8 +8,7 @@ This has been tested on Raspberry Pi 5 Model B, running Linux Kernel 6.8.0 and P
 ## Requirements
 * A Raspberry Pi 5
 * A suitable Linux distribution
-* Python 3.4+
-* 
+* Python 3.4+ 
 
 ## Installation 
 The fan-control scipt must be on the same path referenced in fan-control.service. Please edit fan-control.service to ensure the path points to where you have installed the script. 
