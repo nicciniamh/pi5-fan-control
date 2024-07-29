@@ -11,17 +11,20 @@ This has been tested on Raspberry Pi 5 Model B, running Linux Kernel 6.8.0 and P
 * Python 3.4+ 
 
 ## Installation 
-The fan-control scipt must be on the same path referenced in fan-control.service. Please edit fan-control.service to ensure the path points to where you have installed the script. 
 
-You must change the line: 
-`ExecStart=/path/to/script/fan-control` to reflect where the fan-control script is located, e.g,: `/home/joe/pi5-fan-control/fan-control`
+Clone this repository: 
 
-### Install the service file.
-You must have administrative (sudo) rights on your system. Installing and enabling the service takes three easy steps: 
+```
+git clone https://github.com/nicciniamh/pi5-fan-control
+```
 
-1. sudo cp fan-control.service /etc/systemd/system
-2. sudo systemctl enable fan-control.servie
-3. sudo systemctl start fan-control.servie
+Then cd to p5i-fan-control and run ./setup.sh and follow the prompts
+
+
+```
+cd pi5-fan-control
+./setup.sh
+```
 
 # Inspiration and Credit where Due
 I wrote this inspired by [James Ashley](https://gist.github.com/James-Ansley/32f72729487c8f287a801abcc7a54f38)
