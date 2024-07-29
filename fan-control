@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+""" Fan Control for raspberry pi 5 - tested on Raspberry Pi 5 Model B, kernel 6.8.0 """
+from enum import Enum
+import time
+import os
+import sys
+
+class FanSpeed(Enum):
+	""" Symbolics for fan speed input """
+	OFF = 0
+	LOW = 1
+	MEDIUM = 2
+	HIGH = 3
+	FULL = 4
+
+class Fan:
+	def __init__(self):
+		self.fan_path = "/sys/class/thermal/cooling_device0/cur_state"
+		self.temp_path = "/sys/devices/virtual/thermal/thermal_zone0/temp"
+		self.ranges = {
+			70: FanSpeed.FULL,
+			65: FanSpeed.HIGH,
+			60: FanSpeed.MEDIUM,
+			55: FanSpeed.LOW,
+			54: FanSpeed.OFF
+		}
+
+	@property
+	def speed(self) -> FanSpeed:
+		with open(self.fan_path) as f:
+			speed = int(f.read().strip())
+		return FanSpeed(speed)
+
+	def set_speed(self, speed: FanSpeed):
+		with open(self.fan_path, "w") as f:
+			f.write(str(speed.value))
+		return self
+
+	def get_temp(self) -> float:
+		with open(self.temp_path, "r") as f:
+			data = f.read().strip()
+		return float(data) / 1000
+
+	def adjust_for_temp(self):
+		temp = self.get_temp()
+		cspeed = self.speed
+		speed = cspeed
+		for level, spd in self.ranges.items():
+			if temp >= level:
+				speed = spd
+
+		self.set_speed(speed)
+
+def main():
+	fan = Fan()
+	if os.getuid() != 0:
+		print("fan control must be run as root",file=sys.stderr)
+		sys.exit(-13)
+	print("Fan control started")
+	while True:
+		try:
+			fan.adjust_for_temp()
+		except Exception as e:
+			print(f'adjust-for-temp: {e}',file=sys.stderr)
+
+		time.sleep(2)
+
+
+if __name__ == "__main__":
+	main()

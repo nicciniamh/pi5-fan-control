@@ -1,0 +1,13 @@
+[Unit]
+Description=Pi 5 Fan Control
+After=basic.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/path/to/script/fancontrol
+
+[Install]
+WantedBy=multi-user.target
