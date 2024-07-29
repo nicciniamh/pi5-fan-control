@@ -11,9 +11,9 @@ while [[ ${answer} != "yes" ]] ; do
 done
 sed -i "s@/path/to/script@${dir}@g" fan-control.service
 echo "Copying service unit. You may be asked for your password to elevate priveliges"
-sudo cp fan-control.service /etc/systdemd/system
-sudo systemctrl daemon-reload
-sudo systemctrl enable fan-control.service
+sudo cp fan-control.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable fan-control.service
 sudo systemctl start fan-control.service
 echo "If all is well, you should see a running service in the status below"
 echo ""
