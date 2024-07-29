@@ -25,6 +25,10 @@ You must have administrative (sudo) rights on your system. Installing and enabli
 
 # Inspiration and Credit where Due
 I wrote this inspired by [James Ashley](https://gist.github.com/James-Ansley/32f72729487c8f287a801abcc7a54f38)
-I have additional code base on this as part of my [SensorFS](https://github.com/nicciniamh/sensorfs) project, but this code 
-is stand-alone meaning no exotic libraries are used. The only requirement is Python 3.4+. 
 
+# Why I wrote a new version
+I wanted to integrate systemd and create a service to keep my pi cool. As I thought about it further, 
+I wrote additional code based on this as part of my [SensorFS](https://github.com/nicciniamh/sensorfs)
+project which also provides remote control.
+
+The service, however, is stand-alone. No third party libraries are used.
