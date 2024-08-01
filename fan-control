@@ -24,6 +24,10 @@ class Fan:
 			55: FanSpeed.LOW,
 			54: FanSpeed.OFF
 		}
+		if not os.path.exists(self.fan_path):
+			raise RuntimeError(f"Cannot find fan interface at {self.fan_path} (is pwm_fan loaded?)")
+		if not os.path.exists(self.temp_path):
+			raise RuntimeError(f"Cannot find cpu temperature interface at {self.temo_path}")
 
 	@property
 	def speed(self) -> FanSpeed:
@@ -48,6 +52,8 @@ class Fan:
 		for level, spd in self.ranges.items():
 			if temp >= level:
 				speed = spd
+				#print(temp,level,spd)
+				break
 
 		self.set_speed(speed)
 
