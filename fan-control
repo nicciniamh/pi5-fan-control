@@ -58,7 +58,7 @@ def main():
 					"/sys/devices/virtual/thermal/thermal_zone0/temp"]
 	fail = False
 	for p in check_paths:
-		if not os.path,exists(p):
+		if not os.path.exists(p):
 			print(f"Cannot find control interface at {p}",file=sys.stderr)
 			fail = True
 	if fail:
