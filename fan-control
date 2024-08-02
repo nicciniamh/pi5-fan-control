@@ -24,10 +24,6 @@ class Fan:
 			55: FanSpeed.LOW,
 			54: FanSpeed.OFF
 		}
-		if not os.path.exists(self.fan_path):
-			raise RuntimeError(f"Cannot find fan interface at {self.fan_path} (is pwm_fan loaded?)")
-		if not os.path.exists(self.temp_path):
-			raise RuntimeError(f"Cannot find cpu temperature interface at {self.temo_path}")
 
 	@property
 	def speed(self) -> FanSpeed:
@@ -58,6 +54,17 @@ class Fan:
 		self.set_speed(speed)
 
 def main():
+	check_paths = [	"/sys/class/thermal/cooling_device0/cur_state",
+					"/sys/devices/virtual/thermal/thermal_zone0/temp"]
+	fail = False
+	for p in check_paths:
+		if not os.path,exists(p):
+			print(f"Cannot find control interface at {p}",file=sys.stderr)
+			fail = True
+	if fail:
+		print('Required control interfaces are not present. Please ensure any required kernel modules are loaded.',file=sys.stderr)
+		sys,exit(-1)
+
 	fan = Fan()
 	if os.getuid() != 0:
 		print("fan control must be run as root",file=sys.stderr)
