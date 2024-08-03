@@ -7,7 +7,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=root
-ExecStart=/home/nicci/pi5-fan-control/fan-control
+ExecStart=/path/to/script/fan-control
 
 [Install]
 WantedBy=multi-user.target

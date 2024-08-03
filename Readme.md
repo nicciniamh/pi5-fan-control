@@ -20,7 +20,8 @@ enum. The values correlate to the table below.
 |  0  | FanSpeed.OFF      | <55°C|
 
 ### This is a chart showing a few days of statistics on my pi5. 
-![fanstats.png](fanstats.png)
+![fanstats-dark.png](fanstats-dark.png#gh-dark-mode-only)
+![fanstats-light.png](fanstats-light.png#gh-light-mode-only)
 
 ## Requirements
 * A Raspberry Pi 5
@@ -29,13 +30,16 @@ enum. The values correlate to the table below.
 
 ## Installation 
 
+### Notes about the setup script.
+The setup script ***must*** be run on the same path as the fan-control script and fan-control.service unit file as that is the path written to the service unit file. If you wish to move these files, simply run setup.sh agaib. 
+
 Clone this repository: 
 
 ```
 git clone https://github.com/nicciniamh/pi5-fan-control
 ```
 
-Then cd to p5i-fan-control and run ./setup.sh and follow the prompts
+Then cd to p5i-fan-control and run ./setup.sh and follow the prompts. 
 
 
 ```
