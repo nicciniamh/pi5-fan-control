@@ -3,6 +3,7 @@
 ## Installation script for fan-control service
 ##
 function abort() {
+	# shellcheck disable=SC2145
 	echo "Abort: $@" >&2
 	exit 1
 }
@@ -40,7 +41,7 @@ fi
 
 while [[ ${answer} != "yes" ]] ; do
 	echo -n "This script will edit, install, enable, and start the service. Proceeed? [yes|no]: "
-	read answer
+	read -r answer
 	case $answer in
 		yes ) break ;; 
 		no ) exit 0 ;;
