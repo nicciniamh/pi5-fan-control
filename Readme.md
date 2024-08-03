@@ -5,6 +5,9 @@ With Ubuntu on Raspberry Pi 5 there is no service to monitor cpu temperature and
 
 This has been tested on Raspberry Pi 5 Model B, running Linux Kernel 6.8.0 and Python 3.12 under Ubuntu Linux 24.04 LTS
 
+This is a chart showing a few days of statistics on my pi5. 
+![fanstats.png](fanstats.png)
+
 ## Requirements
 * A Raspberry Pi 5
 * A suitable Linux distribution
