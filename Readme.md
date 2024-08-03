@@ -56,3 +56,6 @@ I wrote additional code based on this as part of my [SensorFS](https://github.co
 project which also provides remote control.
 
 The service, however, is stand-alone. No third party libraries are used.
+
+# License 
+This code is covered by the MIT license. Pretty basic. Please when attributing, also attribute James Ashley as the original coder. :) 
