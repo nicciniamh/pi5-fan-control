@@ -5,7 +5,21 @@ With Ubuntu on Raspberry Pi 5 there is no service to monitor cpu temperature and
 
 This has been tested on Raspberry Pi 5 Model B, running Linux Kernel 6.8.0 and Python 3.12 under Ubuntu Linux 24.04 LTS
 
-This is a chart showing a few days of statistics on my pi5. 
+## Fan control parameters
+
+Every two seconds the service script, fan-control, checks the cpu temperature, and compares it 
+to a set of constants to determine the fan speed to set. The fan speed is represented by the FanSpeed 
+enum. The values correlate to the table below. 
+
+|Value|Fan Speed Constant | Temp |
+|-----|-------------------|------|
+|  4  | FanSpeed.MAX      | >70°C|
+|  3  | FanSpeed.HIGH     | >65°C|
+|  2  | FanSpeed.MEDIUM   | >60°C|
+|  1  | FanSpeed.LOW      | >55°C|
+|  0  | FanSpeed.OFF      | <55°C|
+
+### This is a chart showing a few days of statistics on my pi5. 
 ![fanstats.png](fanstats.png)
 
 ## Requirements
