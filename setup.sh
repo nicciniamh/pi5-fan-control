@@ -2,7 +2,10 @@
 ##
 ## Installation script for fan-control service
 ##
-
+function abort() {
+	echo "Abort: $@" >&2
+	exit 1
+}
 dir="$(pwd)"
 answer="none"
 ok="true"
@@ -10,8 +13,7 @@ ok="true"
 ## Check to see if we're running as root
 
 if [[  $(id -u) != 0 ]] ; then
-	echo "This script must be run as root" >&1
-	exit 1
+	abort "This script must be run as root" >&1
 fi
 
 ##
@@ -29,8 +31,7 @@ if [[ ! -f "/sys/devices/virtual/thermal/thermal_zone0/temp" ]]; then
 	ok="false"
 fi
 if [[ "$ok" == "false" ]] ; then
-	echo "Aborting due to errors" >&2
-	exit 1
+	abort "Aborting due to previous errors"
 fi
 
 ##
@@ -47,14 +48,14 @@ while [[ ${answer} != "yes" ]] ; do
 done
 ## Ediy service file to reflect script location
 
-sed -i "s@/path/to/script@${dir}@g" fan-control.service
+sed -i "s@/path/to/script@${dir}@g" fan-control.service || abort "Error editing service unit"
 
 ## Copy service file, enable and start service
 echo "Copying, enabling and starting service unit."
-cp fan-control.service /etc/systemd/system
-systemctl daemon-reload
-systemctl enable fan-control.service
-systemctl start fan-control.service
+cp fan-control.service /etc/systemd/system || abort "Error copying unit file"
+systemctl daemon-reload  || abort "Error reloading systemd"
+systemctl enable fan-control.service || abort "non-zero return on enble fan-control"
+systemctl start fan-control.service || abort "non-zero return on start fan-control"
 echo "If all is well, you should see a running service in the status below"
 echo ""
 systemctl status fan-control.service
