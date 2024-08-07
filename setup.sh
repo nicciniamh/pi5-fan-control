@@ -49,11 +49,10 @@ while [[ ${answer} != "yes" ]] ; do
 done
 ## Ediy service file to reflect script location
 
-sed  "s@/path/to/script@${dir}@g" <fan-control.service >/etc/systemd/system/fan-control.service || abort "Error editing service unit"
 
 ## Copy service file, enable and start service
 echo "Copying, enabling and starting service unit."
-cp fan-control.service /etc/systemd/system || abort "Error copying unit file"
+sed  "s@/path/to/script@${dir}@g" <fan-control.service >/etc/systemd/system/fan-control.service || abort "Error editing service unit"
 systemctl daemon-reload  || abort "Error reloading systemd"
 systemctl enable fan-control.service || abort "non-zero return on enble fan-control"
 systemctl start fan-control.service || abort "non-zero return on start fan-control"
